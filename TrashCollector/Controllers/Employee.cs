@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace TrashCollector.Controllers
 {
+    [Authorize(Roles = "Employee")]
     public class Employee : Controller
     {
         // GET: Employee
