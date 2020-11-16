@@ -1,8 +1,5 @@
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\appsettings.json
-C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
-C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\TrashCollector.StaticWebAssets.xml
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\TrashCollector.exe
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
@@ -170,3 +167,9 @@ C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netco
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\Account\_ViewImports.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\scopedcss\bundle\TrashCollector.styles.css
+C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Create.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Views\Customer\Edit.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Create.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Edit.cshtml.g.cs
+C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Views\Employee\Details.cshtml.g.cs
