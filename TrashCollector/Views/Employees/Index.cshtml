@@ -1,7 +1,8 @@
-﻿@model IEnumerable<TrashCollector.Models.Employee>
-
+﻿@model IEnumerable<TrashCollector.Models.Customer>
+@*changed employee to customer to at the end of line 1^ to display a list of customers in an employee view*@
 @{
-    ViewData["Title"] = "Index";
+
+    ViewData["Title"] = "Index"; /*points to line 6 inside _Layout.cshtml*/
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -43,11 +44,12 @@
             <td hidden>
                 @Html.DisplayFor(modelItem => item.IdentityUser.Id)
             </td>
-            <td>
+            @*Below are buttons to navigate to other pages*@
+            @*<td>
                 <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
-            </td>
+            </td>*@
         </tr>
 }
     </tbody>
