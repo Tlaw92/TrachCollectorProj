@@ -12,6 +12,9 @@ using TrashCollector.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Http;
+using TrashCollector.ActionFilters;
 
 namespace TrashCollector
 {

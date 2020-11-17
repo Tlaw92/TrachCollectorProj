@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace TrashCollector.ActionFilters
 {
-    public class GlobalRouting
-    {
+   
         public class GlobalRouting : IActionFilter
         {
             private readonly ClaimsPrincipal _claimsPrincipal;
@@ -14,6 +16,7 @@ namespace TrashCollector.ActionFilters
             {
                 _claimsPrincipal = claimsPrincipal;
             }
+
             public void OnActionExecuting(ActionExecutingContext context)
             {
                 var controller = context.RouteData.Values["controller"];
@@ -37,4 +40,4 @@ namespace TrashCollector.ActionFilters
         }
 
     }
-}
+

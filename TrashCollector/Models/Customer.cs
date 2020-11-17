@@ -23,12 +23,13 @@ namespace TrashCollector.Models
 
         public int Balance { get; set; }
 
-        public string PickUpDay { get; set; }
+        public DateTime PickUpDay { get; set; }
 
         public DateTime ExtraPickUpDate { get; set; }
 
         // specify a START and END date to temporarily suspend my pickups
-        public DateTime SuspendPickUp { get; set; }
+        public DateTime SuspendPickUpStart { get; set; }
+        public DateTime SuspendPickUpEnd { get; set; }
 
         [ForeignKey("IdentityUser")]
         public string IdentityUserId { get; set; }
