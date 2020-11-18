@@ -23,8 +23,9 @@ namespace TrashCollector.Controllers
         // GET: Customers
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Customer.Include(c => c.IdentityUser);
-            return View(await applicationDbContext.ToListAsync());
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var customer = _context.Customer.Where(c => c.IdentityUserId == userId);
+            return View(customer);
         }
 
         // GET: Customers/Details/5
@@ -49,7 +50,7 @@ namespace TrashCollector.Controllers
         // GET: Customers/Create
         public IActionResult Create()
         {
-            ViewData["IdentityUserId"] = new SelectList(_context.Users, "Id", "Id");
+          
             return View();
         }
 
@@ -58,10 +59,12 @@ namespace TrashCollector.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,Address,ZipCode,Balance,PickUpDay,ExtraPickUpDate,SuspendPickUpStart,SuspendPickUpEnd,IdentityUserId")] Customer customer)
+        public async Task<IActionResult> Create([Bind("CustomerId,FirstName,LastName,Address,ZipCode,Balance,PickUpDay,ExtraPickUpDate,SuspendPickUpStart,SuspendPickUpEnd")] Customer customer)
         {
             if (ModelState.IsValid)
             {
+                var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+                customer.IdentityUserId = userId;
                 _context.Add(customer);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -167,7 +170,6 @@ namespace TrashCollector.Controllers
         {
             //grab one customer from db //change pick up day and save it
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
             var customer = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
             if (customer == null)
             {
@@ -192,6 +194,21 @@ namespace TrashCollector.Controllers
 
                 return View();
             }
+        }
+
+        //A customer I want to see how much I owe this month for the pickups I did get so I can budget accordingly.
+        //GET
+        public ActionResult GetBalance()
+        {
+            //grab one customer from db whos logged in
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var customer = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            if (customer == null)
+            {
+                return RedirectToAction("Create");
+            }
+            return View(customer);
         }
 
     }
