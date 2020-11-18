@@ -23,7 +23,7 @@ namespace TrashCollector.Models
 
         public int Balance { get; set; }
 
-        public DateTime PickUpDay { get; set; }
+        public DayOfWeek PickUpDay { get; set; }
 
         public DateTime ExtraPickUpDate { get; set; }
 

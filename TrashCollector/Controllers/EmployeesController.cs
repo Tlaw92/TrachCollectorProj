@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -156,5 +157,20 @@ namespace TrashCollector.Controllers
         {
             return _context.Employee.Any(e => e.EmployeeId == id);
         }
+
+        ///  I want my default employee view to be a list of today’s trash pickups in my area ///
+        ///  Step 1 -  find the employee from the database who is currently logged in
+        ///  Step 2 -  use that employee to find all of the customers from the database where the zipcodes match
+        ///  Step 3 -  send them to the view
+
+        //public async Task<IActionResult> ListCustByZip()
+        //{
+        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        //    var Emp1 = userId.Where(w => w.Contains(EmployeesController)).ToList();
+
+        //    var applicationDbContext = _context.Employee.Include(e => e.IdentityUser);
+        //    return View(await applicationDbContext.ToListAsync());
+        //}
     }
 }

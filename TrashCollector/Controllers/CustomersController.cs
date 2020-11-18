@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -156,5 +157,42 @@ namespace TrashCollector.Controllers
         {
             return _context.Customer.Any(e => e.CustomerId == id);
         }
+
+
+        /// User storycode below
+
+        /// 1. As a customer, I want to be able to select or change my weekly pickup day
+        // Get      
+        public ActionResult EditPickUpDay()
+        {
+            //grab one customer from db //change pick up day and save it
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            var customer = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
+            if (customer == null)
+            {
+                return RedirectToAction("Create");
+            }
+            return View(customer);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPickUpDay(Customer customer)
+        {
+            try
+            {
+                _context.Customer.Update(customer);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+        }
+
     }
 }
