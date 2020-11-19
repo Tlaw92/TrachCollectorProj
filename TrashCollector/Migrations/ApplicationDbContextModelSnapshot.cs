@@ -49,14 +49,14 @@ namespace TrashCollector.Migrations
                         new
                         {
                             Id = "36ed2b64-e030-4d28-8c42-3e971ae100f3",
-                            ConcurrencyStamp = "346f3be2-b23f-447f-9b58-9101adfb3518",
+                            ConcurrencyStamp = "cf078848-7a79-4e63-bd84-2c31535d5765",
                             Name = "Employee",
                             NormalizedName = "EMPLOYEE"
                         },
                         new
                         {
                             Id = "dbe1796b-1f88-4aa5-b5c8-76ba6866bf75",
-                            ConcurrencyStamp = "b37f0a67-2433-4920-a74d-29c0f7afcf98",
+                            ConcurrencyStamp = "813ba844-ad84-4678-bdee-d83f30739114",
                             Name = "Customer",
                             NormalizedName = "CUSTOMER"
                         });

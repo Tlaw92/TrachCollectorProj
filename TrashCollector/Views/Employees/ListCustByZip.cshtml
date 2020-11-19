@@ -1,11 +1,11 @@
 ﻿@model IEnumerable<TrashCollector.Models.Customer>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "ListCustByZip";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>ListCustByZip</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -40,7 +40,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.SuspendPickUpEnd)
             </th>
-            <th hidden>
+            <th>
                 @Html.DisplayNameFor(model => model.IdentityUser)
             </th>
             <th></th>
@@ -76,14 +76,13 @@
             <td>
                 @Html.DisplayFor(modelItem => item.SuspendPickUpEnd)
             </td>
-            <td hidden>
+            <td>
                 @Html.DisplayFor(modelItem => item.IdentityUser.Id)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a>
-                <a asp-action="EditPickUpDay" asp-route-id="@item.CustomerId">EditPickUpDay</a>
             </td>
         </tr>
 }

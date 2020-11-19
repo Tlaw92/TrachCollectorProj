@@ -11,8 +11,13 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<p>
+    <a asp-action="ListCustByZip">List Customer by zipcode</a>
+</p>
+
 <table class="table">
     <thead>
+        
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FirstName)
@@ -23,7 +28,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.ZipCode)
             </th>
-            <th>
+            <th hidden>
                 @Html.DisplayNameFor(model => model.IdentityUser)
             </th>
             <th></th>
@@ -31,6 +36,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+        
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
@@ -44,12 +50,13 @@
             <td hidden>
                 @Html.DisplayFor(modelItem => item.IdentityUser.Id)
             </td>
-            @*Below are buttons to navigate to other pages*@
-            @*<td>
-                <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
-            </td>*@
+
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.CustomerId">Delete</a> |
+                <a asp-action="ConfirmPickup" asp-route-id="@item.CustomerId">Confirm Pickup</a>
+            </td>                
         </tr>
 }
     </tbody>

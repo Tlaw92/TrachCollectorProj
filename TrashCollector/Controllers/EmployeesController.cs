@@ -163,14 +163,30 @@ namespace TrashCollector.Controllers
         ///  Step 2 -  use that employee to find all of the customers from the database where the zipcodes match
         ///  Step 3 -  send them to the view
 
-        //public async Task<IActionResult> ListCustByZip()
-        //{
-        //    var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+        //GET:
+        public ActionResult ListCustByZip()
+        {
+            //Get employee logged in
+            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
+            //get employee foreign key that matches customer user id
+            var employee = _context.Employee.Where(e => e.IdentityUserId == userId).SingleOrDefault();
+            // GET: Customers that share a zip code with employee
+            var custWithZipSameAsEmpZip = _context.Customer.Where(c => c.ZipCode == employee.ZipCode);
+            // Select from data above with customer pick ups happening today
+            return View(custWithZipSameAsEmpZip);
+        }
 
-        //    var Emp1 = userId.Where(w => w.Contains(EmployeesController)).ToList();
+        public ActionResult ConfirmPickup(int id) //id = Customer.CustomerID
+        {
+            //find the customer in the DB with this id
+           var customer = _context.Customer.Where(c => c.CustomerId == id).SingleOrDefault();
 
-        //    var applicationDbContext = _context.Employee.Include(e => e.IdentityUser);
-        //    return View(await applicationDbContext.ToListAsync());
-        //}
+            //assign model property isPickedUp = true
+            
+            //assign customer balance
+            customer.Balance += 15;
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

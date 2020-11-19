@@ -200,3 +200,4 @@ C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netco
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\TrashCollector.dll
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\TrashCollector.pdb
 C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\TrashCollector.genruntimeconfig.cache
+C:\Users\TLaw\Documents\DCC2\Week7\TrashCollector\TrashCollector\obj\Debug\netcoreapp3.1\Razor\Views\Employees\ListCustByZip.cshtml.g.cs

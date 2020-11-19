@@ -198,18 +198,7 @@ namespace TrashCollector.Controllers
 
         //A customer I want to see how much I owe this month for the pickups I did get so I can budget accordingly.
         //GET
-        public ActionResult GetBalance()
-        {
-            //grab one customer from db whos logged in
-            var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            var customer = _context.Customer.Where(c => c.IdentityUserId == userId).SingleOrDefault();
-            if (customer == null)
-            {
-                return RedirectToAction("Create");
-            }
-            return View(customer);
-        }
+       
 
     }
 }
