@@ -170,11 +170,21 @@ namespace TrashCollector.Controllers
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             //get employee foreign key that matches customer user id
             var employee = _context.Employee.Where(e => e.IdentityUserId == userId).SingleOrDefault();
-            // GET: Customers that share a zip code with employee
+
+            //Get Customers that share a zip code with employee
             var custWithZipSameAsEmpZip = _context.Customer.Where(c => c.ZipCode == employee.ZipCode);
+
             // Select from data above with customer pick ups happening today
+            var finalList = custWithZipSameAsEmpZip.Where(c => c.PickUpDay.ToString() == DateTime.Today.ToString());
+
             return View(custWithZipSameAsEmpZip);
         }
+
+
+
+
+
+
 
         public ActionResult ConfirmPickup(int id) //id = Customer.CustomerID
         {
