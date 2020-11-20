@@ -172,7 +172,7 @@ namespace TrashCollector.Controllers
 
 
         //GET:
-        public ActionResult Index()
+        public IActionResult Index()
         {
             //get employee logged in
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
@@ -180,27 +180,28 @@ namespace TrashCollector.Controllers
             var employee = _context.Employee.Where(e => e.IdentityUserId == userId).FirstOrDefault();
 
             //get customers that share a zip code with employee
-            ////var custWithZipSameAsEmpZip = _context.Customer.Where(c => c.ZipCode == employee.ZipCode).ToList();
+            var custWithZipSameAsEmpZip = _context.Customer.Where(c => c.ZipCode == employee.ZipCode).ToList();
 
+            string today = DateTime.Today.DayOfWeek.ToString();
             // Select from data above with customer pick ups happening today
-            ////var finalList = custWithZipSameAsEmpZip.Where(c => c.PickUpDay.ToString() == DateTime.Today.ToString());
-            var customerList = RegularCustomers(employee);
-            return View("ListCustByZip", customerList);
+            var finalList = custWithZipSameAsEmpZip.Where(c => c.PickUpDay.ToString() == today);
+            //var customerList = RegularCustomers(employee);
+            return View(finalList);
         }
 
-        private List<Customer> RegularCustomers(Employee employee)
-        {
-            List<Customer> customerList = new List<Customer>();
-            foreach (Customer customer in _context.Customer.Include(c => c.ZipCode))
-            {
-                if (customer.ZipCode == employee.ZipCode)
-                {
-                    customerList.Add(customer);
-                }
-               
-            }
-            return customerList;
-        }
+        //private IActionResult RegularCustomers(Employee employee)
+        //{
+        //    List<Customer> customerList = new List<Customer>();
+        //    foreach (Customer customer in _context.Customer)
+        //    {
+        //        if (customer.ZipCode == employee.ZipCode)
+        //        {
+        //            customerList.Add(customer);
+        //        }
+                
+        //    }
+        //    return View("ListCustByZip",customerList); //Pass this list into the view
+        //}
 
 
         public ActionResult ConfirmPickup(int id) //id = Customer.CustomerID
