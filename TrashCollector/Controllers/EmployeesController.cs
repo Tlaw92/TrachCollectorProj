@@ -20,12 +20,17 @@ namespace TrashCollector.Controllers
             _context = context;
         }
 
+
+
         // GET: Employees
-        public async Task<IActionResult> Index()
-        {
-            var customers = _context.Customer.Include(e => e.IdentityUser);
-            return View(customers);
-        }
+        //public async Task<IActionResult> IndexBackUp()
+        //{
+        //    var customers = _context.Customer.Include(e => e.IdentityUser);
+        //    var todaysListByZip = ListCustByZip();
+
+
+        //    return View("ListCustByZip", customers);
+        //}
 
         // GET: Employees/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -163,27 +168,39 @@ namespace TrashCollector.Controllers
         ///  Step 2 -  use that employee to find all of the customers from the database where the zipcodes match
         ///  Step 3 -  send them to the view
 
+
+
+
         //GET:
-        public ActionResult ListCustByZip()
+        public ActionResult Index()
         {
-            //Get employee logged in
+            //get employee logged in
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
             //get employee foreign key that matches customer user id
-            var employee = _context.Employee.Where(e => e.IdentityUserId == userId).SingleOrDefault();
+            var employee = _context.Employee.Where(e => e.IdentityUserId == userId).FirstOrDefault();
 
-            //Get Customers that share a zip code with employee
-            var custWithZipSameAsEmpZip = _context.Customer.Where(c => c.ZipCode == employee.ZipCode);
+            //get customers that share a zip code with employee
+            ////var custWithZipSameAsEmpZip = _context.Customer.Where(c => c.ZipCode == employee.ZipCode).ToList();
 
             // Select from data above with customer pick ups happening today
-            var finalList = custWithZipSameAsEmpZip.Where(c => c.PickUpDay.ToString() == DateTime.Today.ToString());
-
-            return View(custWithZipSameAsEmpZip);
+            ////var finalList = custWithZipSameAsEmpZip.Where(c => c.PickUpDay.ToString() == DateTime.Today.ToString());
+            var customerList = RegularCustomers(employee);
+            return View("ListCustByZip", customerList);
         }
 
-
-
-
-
+        private List<Customer> RegularCustomers(Employee employee)
+        {
+            List<Customer> customerList = new List<Customer>();
+            foreach (Customer customer in _context.Customer.Include(c => c.ZipCode))
+            {
+                if (customer.ZipCode == employee.ZipCode)
+                {
+                    customerList.Add(customer);
+                }
+               
+            }
+            return customerList;
+        }
 
 
         public ActionResult ConfirmPickup(int id) //id = Customer.CustomerID
