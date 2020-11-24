@@ -169,16 +169,17 @@ namespace TrashCollector.Controllers
         ///  Step 3 -  send them to the view
 
 
-
-
         //GET:
         public IActionResult Index()
         {
             //get employee logged in
             var userId = this.User.FindFirstValue(ClaimTypes.NameIdentifier);
-            //get employee foreign key that matches customer user id
+            //get employee[dbo].[Employee] foreign key that matches customer user id
             var employee = _context.Employee.Where(e => e.IdentityUserId == userId).FirstOrDefault();
-
+            if (employee == null)
+            {
+                return RedirectToAction(nameof(Create));
+            }
             //get customers that share a zip code with employee
             var custWithZipSameAsEmpZip = _context.Customer.Where(c => c.ZipCode == employee.ZipCode).ToList();
 
